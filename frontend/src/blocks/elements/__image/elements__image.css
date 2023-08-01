@@ -1,0 +1,10 @@
+.elements__image {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  background: #c4c4c4;
+  border-radius: 10px 10px 0px 0px;
+}
+.elements__image:hover {
+  cursor: pointer;
+}

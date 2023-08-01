@@ -1,0 +1,6 @@
+.elements__item {
+  max-width: 282px;
+  border-radius: 10px;
+  background: #ffffff;
+  position: relative;
+}

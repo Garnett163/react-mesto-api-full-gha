@@ -1,0 +1,4 @@
+.elements__like-button_active {
+  background: url(../../../../images/like-button_active.svg);
+  border: none;
+}

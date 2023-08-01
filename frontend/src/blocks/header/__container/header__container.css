@@ -1,0 +1,18 @@
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 600px) {
+  .header__container {
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header__container {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}

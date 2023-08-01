@@ -1,0 +1,27 @@
+.header__link_exit {
+  text-decoration: none;
+  color: #a9a9a9;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.22;
+}
+.header__link_exit:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 900px) {
+  .header__link_exit {
+    font-size: 16px;
+    margin-right: 30px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .header__link_exit {
+    font-size: 14px;
+    line-height: 1.21;
+  }
+}
+@media screen and (max-width: 425px) {
+  .header__link_exit {
+    font-size: 12px;
+  }
+}
