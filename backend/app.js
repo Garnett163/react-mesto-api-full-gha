@@ -11,7 +11,7 @@ const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const validate = require('./middlewares/validation');
 
-const { PORT = 4000 } = process.env;
+const { PORT = 3000 } = process.env;
 const { MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 const { login, createUser } = require('./controllers/users');
 const NotFoundError = require('./errors/NotFoundError');
@@ -22,7 +22,7 @@ mongoose.connect(MONGO_URL, {
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: 'http://localhost:3001' }));
 
 app.use(express.json());
 

@@ -110,7 +110,7 @@ function App() {
   }, [isEditProfilePopupOpen, isEditAvatarPopupOpen, isAddPlacePopupOpen, isConfirmPopupOpen]);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((item) => item._id !== currentUser._id);
+    const isLiked = card.likes.some((item) => item === currentUser._id);
     const jwt = localStorage.getItem('jwt');
 
     api

@@ -45,7 +45,7 @@ class AuthApi {
 }
 
 export const authApi = new AuthApi({
-  baseUrl: 'http://localhost:4000',
+  baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
   },
