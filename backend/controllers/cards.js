@@ -20,7 +20,11 @@ function createCard(req, res, next) {
     .then((card) => res.status(201).send(card))
     .catch((error) => {
       if (error.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
+        next(
+          new BadRequestError(
+            'Переданы некорректные данные при создании карточки.',
+          ),
+        );
       } else {
         next(error);
       }
@@ -45,7 +49,11 @@ function deleteCard(req, res, next) {
     })
     .catch((error) => {
       if (error.name === 'CastError') {
-        next(new BadRequestError('Переданы некорректные данные при удалении карточки.'));
+        next(
+          new BadRequestError(
+            'Переданы некорректные данные при удалении карточки.',
+          ),
+        );
       } else {
         next(error);
       }
@@ -72,7 +80,11 @@ function likeCard(req, res, next) {
     })
     .catch((error) => {
       if (error.name === 'CastError') {
-        next(new BadRequestError('Карточка с указанным id не существует в базе данных'));
+        next(
+          new BadRequestError(
+            'Карточка с указанным id не существует в базе данных',
+          ),
+        );
       } else {
         next(error);
       }
@@ -99,7 +111,11 @@ function dislikeCard(req, res, next) {
     })
     .catch((error) => {
       if (error.name === 'CastError') {
-        next(new BadRequestError('Карточка с указанным id не существует в базе данных'));
+        next(
+          new BadRequestError(
+            'Карточка с указанным id не существует в базе данных',
+          ),
+        );
       } else {
         next(error);
       }

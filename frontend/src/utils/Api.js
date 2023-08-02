@@ -13,16 +13,22 @@ class Api {
     });
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return this._sendFetchRequest(`users/me`, {
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
-  editUserInfo(userInfo) {
+  editUserInfo(userInfo, token) {
     return this._sendFetchRequest(`users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: userInfo.name,
         about: userInfo.about,
@@ -30,16 +36,22 @@ class Api {
     });
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return this._sendFetchRequest(`cards`, {
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
-  addNewCard(card) {
+  addNewCard(card, token) {
     return this._sendFetchRequest(`cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: card.name,
         link: card.link,
@@ -47,42 +59,54 @@ class Api {
     });
   }
 
-  changeAvatar(data) {
+  changeAvatar(data, token) {
     return this._sendFetchRequest(`users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         avatar: data.avatar,
       }),
     });
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
     return this._sendFetchRequest(`cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
-  changeLikeCardStatus(cardId, isLiked) {
+  changeLikeCardStatus(cardId, isLiked, token) {
     if (!isLiked) {
-      return this.likeCard(cardId);
+      return this.likeCard(cardId, token);
     } else {
-      return this.dislikeCard(cardId);
+      return this.dislikeCard(cardId, token);
     }
   }
 
-  likeCard(cardId) {
+  likeCard(cardId, token) {
     return this._sendFetchRequest(`cards/${cardId}/likes`, {
       method: 'PUT',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
-  dislikeCard(cardId) {
+  dislikeCard(cardId, token) {
     return this._sendFetchRequest(`cards/${cardId}/likes`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 }
@@ -90,7 +114,6 @@ class Api {
 export const api = new Api({
   baseUrl: 'http://localhost:4000/',
   headers: {
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
   },
 });

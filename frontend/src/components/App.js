@@ -43,9 +43,10 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
     if (isLoggedIn) {
       api
-        .getUserInfo()
+        .getUserInfo(jwt)
         .then((data) => {
           setCurrentUser(data);
           setUserEmail(data.email);
@@ -54,7 +55,7 @@ function App() {
           console.log(`Error: ${err}`);
         });
       api
-        .getInitialCards()
+        .getInitialCards(jwt)
         .then((data) => {
           setCards(data.reverse());
         })
@@ -110,9 +111,10 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((item) => item._id !== currentUser._id);
+    const jwt = localStorage.getItem('jwt');
 
     api
-      .changeLikeCardStatus(card._id, isLiked)
+      .changeLikeCardStatus(card._id, isLiked, jwt)
       .then((newCard) => {
         setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
       })
@@ -122,10 +124,11 @@ function App() {
   }
 
   function handleCardDelete() {
+    const jwt = localStorage.getItem('jwt');
     setIsSubmitted(true);
     if (cardToDelete) {
       api
-        .deleteCard(cardToDelete._id)
+        .deleteCard(cardToDelete._id, jwt)
         .then(() => {
           const newCards = cards.filter((card) => card._id !== cardToDelete._id);
           setCards(newCards);
@@ -141,9 +144,10 @@ function App() {
   }
 
   function handleUpdateUser(data) {
+    const jwt = localStorage.getItem('jwt');
     setIsSubmitted(true);
     api
-      .editUserInfo(data)
+      .editUserInfo(data, jwt)
       .then((response) => {
         setCurrentUser(response);
         closeAllPopups();
@@ -157,9 +161,10 @@ function App() {
   }
 
   function handleUpdateAvatar(data) {
+    const jwt = localStorage.getItem('jwt');
     setIsSubmitted(true);
     api
-      .changeAvatar(data)
+      .changeAvatar(data, jwt)
       .then((response) => {
         setCurrentUser(response);
         closeAllPopups();
@@ -173,9 +178,10 @@ function App() {
   }
 
   function handleAddPlaceSubmit(data) {
+    const jwt = localStorage.getItem('jwt');
     setIsSubmitted(true);
     api
-      .addNewCard(data)
+      .addNewCard(data, jwt)
       .then((response) => {
         setCards([response, ...cards]);
         closeAllPopups();
@@ -224,7 +230,6 @@ function App() {
           return;
         } else {
           setIsLoggedIn(true);
-          setUserEmail(response.email);
           navigate('/', { replace: true });
         }
       })
