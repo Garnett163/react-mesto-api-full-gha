@@ -45,7 +45,7 @@ class AuthApi {
 }
 
 export const authApi = new AuthApi({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: `https://api.mesto.garnett163.nomoreparties.co`,
   headers: {
     'Content-Type': 'application/json',
   },

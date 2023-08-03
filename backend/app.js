@@ -22,7 +22,14 @@ mongoose.connect(MONGO_URL, {
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:3001' }));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3001',
+      'https://mesto.garnett163.nomoreparties.co',
+    ],
+  }),
+);
 
 app.use(express.json());
 

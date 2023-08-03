@@ -14,7 +14,7 @@ class Api {
   }
 
   getUserInfo(token) {
-    return this._sendFetchRequest(`users/me`, {
+    return this._sendFetchRequest(`/users/me`, {
       headers: {
         ...this._headers,
         Authorization: `Bearer ${token}`,
@@ -23,7 +23,7 @@ class Api {
   }
 
   editUserInfo(userInfo, token) {
-    return this._sendFetchRequest(`users/me`, {
+    return this._sendFetchRequest(`/users/me`, {
       method: 'PATCH',
       headers: {
         ...this._headers,
@@ -37,7 +37,7 @@ class Api {
   }
 
   getInitialCards(token) {
-    return this._sendFetchRequest(`cards`, {
+    return this._sendFetchRequest(`/cards`, {
       headers: {
         ...this._headers,
         Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ class Api {
   }
 
   addNewCard(card, token) {
-    return this._sendFetchRequest(`cards`, {
+    return this._sendFetchRequest(`/cards`, {
       method: 'POST',
       headers: {
         ...this._headers,
@@ -60,7 +60,7 @@ class Api {
   }
 
   changeAvatar(data, token) {
-    return this._sendFetchRequest(`users/me/avatar`, {
+    return this._sendFetchRequest(`/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         ...this._headers,
@@ -73,7 +73,7 @@ class Api {
   }
 
   deleteCard(cardId, token) {
-    return this._sendFetchRequest(`cards/${cardId}`, {
+    return this._sendFetchRequest(`/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
         ...this._headers,
@@ -91,7 +91,7 @@ class Api {
   }
 
   likeCard(cardId, token) {
-    return this._sendFetchRequest(`cards/${cardId}/likes`, {
+    return this._sendFetchRequest(`/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         ...this._headers,
@@ -101,7 +101,7 @@ class Api {
   }
 
   dislikeCard(cardId, token) {
-    return this._sendFetchRequest(`cards/${cardId}/likes`, {
+    return this._sendFetchRequest(`/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
         ...this._headers,
@@ -112,7 +112,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: `https://api.mesto.garnett163.nomoreparties.co`,
   headers: {
     'Content-Type': 'application/json',
   },
